@@ -1,0 +1,12 @@
+# Fires
+*.pyc
+*.lock
+*.sqlite3
+setup.cfg
+
+
+# Folders
+__pycache__/*
+dist/
+.venv/
+.idea/
