@@ -4,4 +4,9 @@
 
 {% block content %}
 <h1>Статьи</h1>
+<ul>
+{% for article in articles%}
+    <li> {{ article.title }} by {{ article.author}}
+{% endfor %}
+    </ul>
 {% endblock %}
