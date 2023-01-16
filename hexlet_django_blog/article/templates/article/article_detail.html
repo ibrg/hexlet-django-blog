@@ -3,7 +3,7 @@
 {% block title %}{{ title }} - Django на Хекслете{% endblock %}
 
 {% block content %}
-
-    <p>Статья номер {{ article_id }}. Тег {{ tags }}</p>
-
+{% for post in article %}
+    <p>Статья номер {{ post.id }}. {{ post.title }} by {{ post.author }}</p>
+{% endfor %}
 {% endblock %}

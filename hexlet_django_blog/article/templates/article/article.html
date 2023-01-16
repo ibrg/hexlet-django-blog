@@ -6,7 +6,7 @@
 <h1>Статьи</h1>
 <ul>
 {% for article in articles%}
-    <li> {{ article.title }} by {{ article.author}}
+    <li> <a href="{% url 'article_detail' article.id %}"> {{ article.title }} by {{ article.author}}</a>
 {% endfor %}
     </ul>
 {% endblock %}
