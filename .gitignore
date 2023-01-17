@@ -3,7 +3,7 @@
 *.lock
 *.sqlite3
 setup.cfg
-
+.env
 
 # Folders
 __pycache__/*
