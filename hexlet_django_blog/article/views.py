@@ -44,3 +44,22 @@ class ArticleCreateView(View):
             messages.add_message(request, messages.SUCCESS,  f"Articele {article_name} crested")
             return redirect('articles_index')
         return render(request, 'article/create.html', {'form': form})
+
+
+class ArticleUpdateView(View):
+    
+    def get(self, request, *args, **kwargs):
+        article_id = kwargs['article_id']
+        article = Article.objects.get(id=article_id)
+        form = ArticleForm(instance=article)
+        return render(request, 'article/create.html', {'form': form, 'article_id':article_id})
+    
+    def post(self, request, *args, **kwargs):
+        article_id = kwargs.get['id']
+        article = Article.objects.get(id=article_id)
+        form = ArticleForm(request.POST, instance=article)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS,  f"Articele {article.name} updated!!")
+            return redirect('articles_index')
+        return render(request, 'article/create.html', {'form': form})

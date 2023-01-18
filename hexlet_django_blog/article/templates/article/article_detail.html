@@ -4,7 +4,7 @@
 
 {% block content %}
 
-    <h3> Статья номер {{ article.id }}. {{ article.name }} </h3>
+    <h3> Статья номер {{ article.id }}. {{ article.name }} </h3> - <a href="{% url 'article_update' article.id %}"> Update</a>
     <p> {{ article.body }}</p>
 
     {% endblock %}
