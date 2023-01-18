@@ -4,6 +4,7 @@
 
 {% block content %}
 
-    <p>Статья номер {{ article.id }}. {{ article.title }} by {{ article.author }}</p>
+    <h3> Статья номер {{ article.id }}. {{ article.name }} </h3>
+    <p> {{ article.body }}</p>
 
     {% endblock %}
