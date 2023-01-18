@@ -9,9 +9,17 @@
         <ul>
             <li><a href="/">Главная</a></li>
             <li><a href="{% url 'articles_index' %}">Статьи</a></li>
+            <li><a href="{% url 'article_create' %}"> Добавить статью</a>
         </ul>
     {% endblock %}
 </div>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 <div id="content">
     {% block content %}{% endblock %}
 </div>

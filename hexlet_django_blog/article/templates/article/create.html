@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Add New Article
+{% endblock  %}
+    
+
+
+{% block content %}
+
+{{ form.errors}}
+    
+    <form action="{% url 'article_create' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_ul }}
+        <input type='submit' value="ADD"/>
+    </form>
+{% endblock %}
+    
