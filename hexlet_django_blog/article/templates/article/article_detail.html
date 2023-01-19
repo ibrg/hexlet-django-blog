@@ -4,7 +4,12 @@
 
 {% block content %}
 
-    <h3> Статья номер {{ article.id }}. {{ article.name }} </h3> - <a href="{% url 'article_update' article.id %}"> Update</a>
+    <a href="{% url 'article_update' article.id %}">Update</a>
+    <form action="{% url 'article_delete' article.id %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Delete"/>
+    </form>
+    <h3> Статья номер {{ article.id }}. {{ article.name }}</h3>
     <p> {{ article.body }}</p>
 
     {% endblock %}

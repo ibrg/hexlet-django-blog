@@ -5,10 +5,7 @@
 {% endblock  %}
     
 
-
 {% block content %}
-
-{{ form.errors}}
     
     <form action="{% url 'article_create' %}" method="post">
         {% csrf_token %}

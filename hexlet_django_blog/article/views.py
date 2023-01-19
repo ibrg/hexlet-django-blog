@@ -7,11 +7,6 @@ from .models import Article
 from .forms import ArticleForm
 
 
-def index(request, tags, article_id):
-    context = {'tags': tags, 'article_id': article_id}
-    return render(request, 'article/article_detail.html', context)
-
-
 class IndexView(View):
 
     title = 'Статьи'
@@ -26,7 +21,7 @@ class IndexView(View):
 class ArticleView(View):
     
     def get(self, request, *args, **kwargs):
-        article = get_object_or_404(Article, id=kwargs['article_id'])
+        article = get_object_or_404(Article, id=kwargs['id'])
         return render(request, 'article/article_detail.html', {'article': article})
 
 
@@ -49,17 +44,27 @@ class ArticleCreateView(View):
 class ArticleUpdateView(View):
     
     def get(self, request, *args, **kwargs):
-        article_id = kwargs['article_id']
-        article = Article.objects.get(id=article_id)
+        article_id = kwargs['id']
+        article = get_object_or_404(Article, id=article_id)
         form = ArticleForm(instance=article)
-        return render(request, 'article/create.html', {'form': form, 'article_id':article_id})
+        return render(request, 'article/create.html', {'form': form, 'id':article_id})
     
     def post(self, request, *args, **kwargs):
-        article_id = kwargs.get['id']
-        article = Article.objects.get(id=article_id)
+        article_id = kwargs['id']
+        article = get_object_or_404(Article, id=article_id)
         form = ArticleForm(request.POST, instance=article)
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.SUCCESS,  f"Articele {article.name} updated!!")
             return redirect('articles_index')
         return render(request, 'article/create.html', {'form': form})
+
+
+class ArticleDeleteView(View):
+    
+    def post(self, request, *args, **kwargs):
+        article_id = kwargs['id']
+        article = Article.objects.get(id=article_id)
+        if article:
+            article.delete()
+        return redirect('articles_index')
